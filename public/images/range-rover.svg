@@ -1,0 +1,43 @@
+<svg width="1000" height="500" viewBox="0 0 1000 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="bodyGradient" x1="0" y1="0" x2="100%" y2="0" gradientUnits="userSpaceOnUse">
+<stop stop-color="#D3D3D3"/>
+<stop offset="0.3" stop-color="#A9A9A9"/>
+<stop offset="0.7" stop-color="#A9A9A9"/>
+<stop offset="1" stop-color="#D3D3D3"/>
+</linearGradient>
+<linearGradient id="wheelGradient" x1="0" y1="0" x2="100%" y2="0" gradientUnits="userSpaceOnUse">
+<stop stop-color="#444444"/>
+<stop offset="0.5" stop-color="#222222"/>
+<stop offset="1" stop-color="#444444"/>
+</linearGradient>
+<linearGradient id="windowGradient" x1="0" y1="0" x2="0" y2="100%" gradientUnits="userSpaceOnUse">
+<stop stop-color="#ADD8E6" stop-opacity="0.5"/>
+<stop offset="1" stop-color="#ADD8E6" stop-opacity="0.2"/>
+</linearGradient>
+</defs>
+
+<rect width="1000" height="500" fill="white"/>
+
+<path d="M100 300 C150 250, 250 220, 400 220 H800 C850 220, 900 250, 950 300 L950 400 C950 430, 930 450, 900 450 H150 C120 450, 100 430, 100 400 L100 300 Z" fill="url(#bodyGradient)" stroke="#808080" stroke-width="2"/>
+
+<path d="M400 220 L420 180 C430 160, 450 150, 480 150 H720 C750 150, 770 160, 780 180 L800 220" fill="url(#bodyGradient)" stroke="#808080" stroke-width="2"/>
+
+<path d="M150 300 C170 280, 200 270, 250 270 H350" stroke="#808080" stroke-width="2"/>
+
+<path d="M850 270 H900 C930 270, 950 280, 970 300" stroke="#808080" stroke-width="2"/>
+
+<path d="M420 220 V100 C420 80, 440 70, 460 70 H740 C760 70, 780 80, 780 100 V220" fill="url(#windowGradient)" stroke="#808080" stroke-width="2"/>
+
+<circle cx="250" cy="420" r="50" fill="url(#wheelGradient)" stroke="#000000" stroke-width="2"/>
+<circle cx="250" cy="420" r="20" fill="#AAAAAA" stroke="#000000" stroke-width="1"/>
+
+<circle cx="800" cy="420" r="50" fill="url(#wheelGradient)" stroke="#000000" stroke-width="2"/>
+<circle cx="800" cy="420" r="20" fill="#AAAAAA" stroke="#000000" stroke-width="1"/>
+
+<path d="M150 450 H900" stroke="#000000" stroke-width="4"/>
+
+<path d="M700 200 L700 100" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+<path d="M600 200 L600 100" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+
+</svg>

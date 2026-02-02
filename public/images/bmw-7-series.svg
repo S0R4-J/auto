@@ -1,0 +1,46 @@
+<svg width="800" height="300" viewBox="0 0 800 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="bodyGradient" x1="0" y1="0" x2="800" y2="0" gradientUnits="userSpaceOnUse">
+<stop stop-color="#D3D3D3"/>
+<stop offset="0.3" stop-color="#A9A9A9"/>
+<stop offset="0.7" stop-color="#A9A9A9"/>
+<stop offset="1" stop-color="#D3D3D3"/>
+</linearGradient>
+<linearGradient id="windowGradient" x1="0" y1="0" x2="800" y2="0" gradientUnits="userSpaceOnUse">
+<stop stop-color="#B0C4DE"/>
+<stop offset="0.5" stop-color="#87CEEB"/>
+<stop offset="1" stop-color="#B0C4DE"/>
+</linearGradient>
+<linearGradient id="tireGradient" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
+    <stop stop-color="#333333"/>
+    <stop offset="1" stop-color="#000000"/>
+</linearGradient>
+<linearGradient id="wheelGradient" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
+    <stop stop-color="#808080"/>
+    <stop offset="1" stop-color="#696969"/>
+</linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="5" result="blur"/>
+        <feOffset dx="3" dy="3" in="blur" result="offsetBlur"/>
+        <feMerge>
+            <feMergeNode in="offsetBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+    </filter>
+</defs>
+<rect width="800" height="300" fill="white"/>
+<g filter="url(#shadow)">
+<path d="M 100 150 C 120 100, 200 80, 300 80 C 400 80, 500 100, 550 150 C 600 200, 650 220, 700 220 C 750 220, 780 200, 780 180 L 780 250 C 780 260, 750 270, 700 270 L 100 270 C 50 270, 20 260, 20 250 L 20 180 C 20 200, 50 220, 100 150 Z" fill="url(#bodyGradient)" stroke="#696969" stroke-width="2"/>
+<path d="M 150 90 L 300 90 L 540 90 L 720 90 L 720 170 L 150 170 Z" fill="url(#windowGradient)" stroke="black" stroke-width="0.5"/>
+
+</g>
+<ellipse cx="170" cy="260" rx="40" ry="40" fill="url(#tireGradient)"/>
+<circle cx="170" cy="260" r="25" fill="url(#wheelGradient)"/>
+
+<ellipse cx="680" cy="260" rx="40" ry="40" fill="url(#tireGradient)"/>
+<circle cx="680" cy="260" r="25" fill="url(#wheelGradient)"/>
+
+<circle cx="170" cy="260" r="5" fill="#000000"/>
+<circle cx="680" cy="260" r="5" fill="#000000"/>
+
+</svg>

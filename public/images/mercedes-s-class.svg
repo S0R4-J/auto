@@ -1,0 +1,45 @@
+<svg width="800" height="400" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="bodyGradient" x1="0" y1="0" x2="800" y2="0" gradientUnits="userSpaceOnUse">
+<stop stop-color="#4A4A4A"/>
+<stop offset="0.3" stop-color="#737373"/>
+<stop offset="0.7" stop-color="#737373"/>
+<stop offset="1" stop-color="#4A4A4A"/>
+</linearGradient>
+<linearGradient id="windowGradient" x1="0" y1="0" x2="800" y2="0" gradientUnits="userSpaceOnUse">
+<stop stop-color="#808080"/>
+<stop offset="0.5" stop-color="#A9A9A9"/>
+<stop offset="1" stop-color="#808080"/>
+</linearGradient>
+<linearGradient id="wheelGradient" x1="0" y1="0" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+<stop stop-color="#262626"/>
+<stop offset="0.5" stop-color="#404040"/>
+<stop offset="1" stop-color="#262626"/>
+</linearGradient>
+
+</defs>
+<rect width="800" height="400" fill="white"/>
+<path d="M50 200 C 80 150, 150 130, 250 130 H 550 C 650 130, 720 150, 750 200 L 750 300 C 720 350, 650 370, 550 370 H 250 C 150 370, 80 350, 50 300 L 50 200 Z" fill="url(#bodyGradient)" stroke="#262626" stroke-width="2"/>
+
+<path d="M250 140 H 550 C 640 140, 700 160, 720 210 L 720 290 C 700 340, 640 360, 550 360 H 250 C 160 360, 100 340, 80 290 L 80 210 C 100 160, 160 140, 250 140 Z" fill="url(#windowGradient)" stroke="none"/>
+
+<!--Wheel 1-->
+<circle cx="150" cy="330" r="40" fill="url(#wheelGradient)" stroke="#262626" stroke-width="1"/>
+<circle cx="150" cy="330" r="10" fill="#D3D3D3"/>
+
+<!--Wheel 2-->
+<circle cx="650" cy="330" r="40" fill="url(#wheelGradient)" stroke="#262626" stroke-width="1"/>
+<circle cx="650" cy="330" r="10" fill="#D3D3D3"/>
+
+<!-- Chrome Details (simple) -->
+<rect x="50" y="290" width="700" height="10" fill="#D3D3D3" />
+<rect x="200" y="125" width="50" height="5" fill="#D3D3D3" />
+<rect x="550" y="125" width="50" height="5" fill="#D3D3D3" />
+
+
+<!-- Headlight -->
+<ellipse cx="730" cy="180" rx="30" ry="15" fill="#FFFFAA" stroke="#262626" stroke-width="1"/>
+
+<!-- Taillight -->
+<rect x="30" y="180" width="20" height="40" fill="#FF0000" stroke="#262626" stroke-width="1"/>
+</svg>
