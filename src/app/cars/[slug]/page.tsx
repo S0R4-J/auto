@@ -17,8 +17,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   return {
-    title: `${car.name} | Premium Car Rental`,
-    description: `Rent ${car.name} for $${car.price}/day. Premium service, best prices.`,
+    title: `${car.name} | Аренда премиальных авто`,
+    description: `Аренда ${car.name} за $${car.price}/сутки. Премиальный сервис, лучшие цены. Забронируйте онлайн!`,
     openGraph: {
       images: [car.image],
     },
@@ -40,8 +40,30 @@ export default async function CarPage({ params }: { params: Promise<{ slug: stri
     console.error("Failed to parse specs", e);
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": car.name,
+    "image": car.image,
+    "description": `Аренда ${car.name} премиум класса.`,
+    "brand": {
+      "@type": "Brand",
+      "name": car.brand
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": car.price,
+      "priceCurrency": "USD",
+      "availability": car.isAvailable ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 py-10 md:px-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="grid gap-10 lg:grid-cols-2">
         {/* Gallery Section */}
         <div className="glass-card relative aspect-[16/10] overflow-hidden rounded-xl">

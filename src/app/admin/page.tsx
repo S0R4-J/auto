@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { DeleteCarButton } from "@/components/admin/DeleteCarButton";
+import { BookingCalendar } from "@/components/admin/BookingCalendar";
 
 export default async function AdminPage() {
   const bookings = await getBookings();
@@ -17,6 +18,7 @@ export default async function AdminPage() {
       <Tabs defaultValue="bookings">
         <TabsList className="mb-4">
           <TabsTrigger value="bookings">Заявки ({bookings.length})</TabsTrigger>
+          <TabsTrigger value="calendar">Календарь</TabsTrigger>
           <TabsTrigger value="cars">Автопарк ({cars.length})</TabsTrigger>
         </TabsList>
         
@@ -53,6 +55,10 @@ export default async function AdminPage() {
               </Card>
             ))}
           </div>
+        </TabsContent>
+
+        <TabsContent value="calendar">
+          <BookingCalendar bookings={bookings} cars={cars} />
         </TabsContent>
         
         <TabsContent value="cars">

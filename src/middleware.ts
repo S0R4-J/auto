@@ -1,28 +1,23 @@
-import { NextRequest, NextResponse } from "next/server";
+import { auth } from "@/auth"
+import { NextResponse } from "next/server"
 
-export const config = {
-  matcher: ["/admin", "/admin/:path*"],
-};
-
-export function middleware(req: NextRequest) {
-  const basicAuth = req.headers.get("authorization");
-
-  if (basicAuth) {
-    const authValue = basicAuth.split(" ")[1];
-    const [user, pwd] = atob(authValue).split(":");
-
-    const adminUser = process.env.ADMIN_USER || "admin";
-    const adminPass = process.env.ADMIN_PASSWORD || "admin";
-
-    if (user === adminUser && pwd === adminPass) {
-      return NextResponse.next();
+export default auth((req) => {
+  const isLoggedIn = !!req.auth
+  const isOnAdmin = req.nextUrl.pathname.startsWith("/admin")
+  
+  if (isOnAdmin) {
+    if (!isLoggedIn) {
+      return NextResponse.redirect(new URL("/api/auth/signin", req.nextUrl))
+    }
+    
+    // Check for admin role
+    // @ts-expect-error role is not yet typed
+    if (req.auth?.user?.role !== "admin") {
+      return NextResponse.redirect(new URL("/", req.nextUrl)) // Redirect non-admins
     }
   }
+})
 
-  return new NextResponse("Auth Required", {
-    status: 401,
-    headers: {
-      "WWW-Authenticate": 'Basic realm="Secure Area"',
-    },
-  });
+export const config = {
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 }

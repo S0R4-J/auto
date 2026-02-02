@@ -3,13 +3,15 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { signIn, useSession } from "next-auth/react";
 
 export function Hero() {
+  const { data: session } = useSession();
+
   return (
     <section className="relative flex h-[90vh] items-center justify-center overflow-hidden text-white">
       {/* Background - Placeholder for video/image */}
       <div className="absolute inset-0 z-0">
-        {/* В реальном проекте здесь будет <video> или <Image> */}
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1503376763036-066120622c74?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-40" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
       </div>
@@ -38,10 +40,21 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Button asChild size="lg" className="rounded-full px-8 text-lg">
+          <Button asChild size="lg" className="rounded-full px-8 text-lg bg-white text-black hover:bg-gray-200">
             <Link href="#catalog">Выбрать авто</Link>
           </Button>
+          {!session && (
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="rounded-full px-8 text-lg border-white text-white bg-transparent hover:bg-white hover:text-black transition-all"
+              onClick={() => signIn("google")}
+            >
+              Войти через Google
+            </Button>
+          )}
         </motion.div>
       </div>
     </section>

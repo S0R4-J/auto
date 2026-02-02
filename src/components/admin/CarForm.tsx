@@ -19,6 +19,7 @@ import { Car } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
+import { ImageUpload } from "@/components/admin/ImageUpload";
 
 const formSchema = z.object({
   name: z.string().min(2),
@@ -158,9 +159,13 @@ export function CarForm({ car }: CarFormProps) {
             name="image"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>URL изображения</FormLabel>
+                <FormLabel>Изображение</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <ImageUpload
+                    value={field.value}
+                    onChange={field.onChange}
+                    disabled={isPending}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

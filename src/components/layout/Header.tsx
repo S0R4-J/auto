@@ -3,11 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const { data: session } = useSession();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
@@ -21,7 +23,7 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden gap-6 md:flex">
-          <Link href="/#catalog" className="text-sm font-medium text-gray-300 transition-colors hover:text-white">
+          <Link href="/#fleet" className="text-sm font-medium text-gray-300 transition-colors hover:text-white">
             Автопарк
           </Link>
           <Link href="/terms" className="text-sm font-medium text-gray-300 transition-colors hover:text-white">
@@ -33,10 +35,40 @@ export function Header() {
           <Link href="/contacts" className="text-sm font-medium text-gray-300 transition-colors hover:text-white">
             Контакты
           </Link>
+          {session && (
+            <Link href="/dashboard" className="text-sm font-medium text-gray-300 transition-colors hover:text-white">
+              Кабинет
+            </Link>
+          )}
         </nav>
 
-        {/* Desktop Button */}
-        <div className="hidden md:block">
+        {/* Desktop Auth/Action */}
+        <div className="hidden md:flex items-center gap-4">
+          {session ? (
+            <div className="flex items-center gap-4">
+              {(session.user as any).role === "admin" && (
+                <Link href="/admin" className="text-sm font-medium text-primary hover:text-primary/80">
+                  Админ
+                </Link>
+              )}
+              <Button variant="ghost" size="sm" className="text-white hover:bg-white/10" onClick={() => signOut()}>
+                Выйти
+              </Button>
+              <Link href="/dashboard" className="flex items-center gap-2 text-white">
+                <User size={20} />
+                <span className="text-sm font-medium">{session.user?.name?.split(' ')[0]}</span>
+              </Link>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2">
+              <Button variant="ghost" size="sm" className="text-white hover:bg-white/10" asChild>
+                <Link href="/api/auth/signin">Войти</Link>
+              </Button>
+              <Button variant="ghost" size="sm" className="text-white hover:bg-white/10" asChild>
+                <Link href="/register">Регистрация</Link>
+              </Button>
+            </div>
+          )}
           <Button asChild variant="default" size="sm" className="rounded-full px-6 bg-white text-black hover:bg-gray-200">
             <Link href="/contacts">Заказать звонок</Link>
           </Button>
@@ -58,7 +90,7 @@ export function Header() {
             className="md:hidden overflow-hidden bg-black/95 backdrop-blur-xl border-b border-white/10"
           >
             <nav className="container mx-auto flex flex-col gap-4 p-6">
-              <Link href="/#catalog" className="text-lg font-medium text-gray-300 hover:text-white" onClick={closeMenu}>
+              <Link href="/#fleet" className="text-lg font-medium text-gray-300 hover:text-white" onClick={closeMenu}>
                 Автопарк
               </Link>
               <Link href="/terms" className="text-lg font-medium text-gray-300 hover:text-white" onClick={closeMenu}>
@@ -70,9 +102,25 @@ export function Header() {
               <Link href="/contacts" className="text-lg font-medium text-gray-300 hover:text-white" onClick={closeMenu}>
                 Контакты
               </Link>
-              <Button asChild variant="default" size="lg" className="mt-4 w-full rounded-full bg-white text-black hover:bg-gray-200" onClick={closeMenu}>
-                <Link href="/contacts">Заказать звонок</Link>
-              </Button>
+              {session && (
+                <Link href="/dashboard" className="text-lg font-medium text-gray-300 hover:text-white" onClick={closeMenu}>
+                  Личный кабинет
+                </Link>
+              )}
+              <div className="flex flex-col gap-2 mt-4">
+                {session ? (
+                  <Button variant="outline" className="text-white border-white/20" onClick={() => { signOut(); closeMenu(); }}>
+                    Выйти
+                  </Button>
+                ) : (
+                  <Button variant="outline" className="text-white border-white/20" onClick={() => { signIn("google"); closeMenu(); }}>
+                    Войти через Google
+                  </Button>
+                )}
+                <Button asChild variant="default" size="lg" className="w-full rounded-full bg-white text-black hover:bg-gray-200" onClick={closeMenu}>
+                  <Link href="/contacts">Заказать звонок</Link>
+                </Button>
+              </div>
             </nav>
           </motion.div>
         )}

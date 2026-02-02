@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { checkAuth } from "@/lib/auth";
+import { auth } from "@/auth";
 
 export async function getCars() {
   try {
@@ -27,7 +27,8 @@ export async function getCarBySlug(slug: string) {
 }
 
 export async function getBookings() {
-  if (!(await checkAuth())) {
+  const session = await auth();
+  if (session?.user?.role !== "admin") {
     return [];
   }
 
@@ -39,6 +40,23 @@ export async function getBookings() {
     return bookings;
   } catch (error) {
     console.error("Error fetching bookings:", error);
+    return [];
+  }
+}
+
+export async function getUserBookings() {
+  const session = await auth();
+  if (!session?.user?.id) return [];
+
+  try {
+    const bookings = await prisma.booking.findMany({
+      where: { userId: session.user.id },
+      orderBy: { createdAt: "desc" },
+      include: { car: true },
+    });
+    return bookings;
+  } catch (error) {
+    console.error("Error fetching user bookings:", error);
     return [];
   }
 }

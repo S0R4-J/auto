@@ -1,86 +1,68 @@
 # Premium Car Rental Service
 
-High-performance web application for luxury car rental. Built with Next.js 15, Tailwind CSS, Prisma, and Shadcn/UI.
+Современная Full-stack платформа для аренды автомобилей премиум-класса. Проект реализован как высокопроизводительное веб-приложение с полноценной админ-панелью, системой бронирования и аутентификацией.
 
-## Features
+## 🚀 Технологический стек
 
-- 🚗 **Premium Design**: Apple-style aesthetics, glassmorphism, smooth animations.
-- ⚡ **High Performance**: Server Components, optimized images, Lenis scroll.
-- 🛠 **Full Stack**: Next.js App Router, Server Actions, Prisma ORM.
-- 📱 **Responsive**: Mobile-first design.
-- 🔒 **Admin Panel**: Manage bookings and fleet (Basic Auth).
-- 🤖 **Telegram Integration**: Instant notifications for new bookings.
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS 4
+- **Database:** PostgreSQL / SQLite (Prisma ORM)
+- **Auth:** Auth.js v5 (NextAuth)
+- **Animations:** Framer Motion
+- **Notifications:** Telegram Bot API
+- **UI Components:** Radix UI / Shadcn UI
 
-## Tech Stack
+## ✨ Основные возможности
 
-- **Framework**: Next.js 15
-- **Styling**: Tailwind CSS, Shadcn/UI
-- **Animations**: Framer Motion, Lenis
-- **Database**: SQLite (Dev) / PostgreSQL (Prod) via Prisma
-- **Forms**: React Hook Form + Zod
+### Для пользователей:
+- **Каталог авто:** Плавный интерфейс с фильтрацией и детальными страницами.
+- **Система бронирования:** Интерактивный календарь с проверкой доступности дат в реальном времени.
+- **Личный кабинет:** История заказов, управление профилем.
+- **Аутентификация:** Вход через Email/Пароль и Google OAuth.
+- **SEO:** Динамические мета-теги и JSON-LD разметка для каждой машины.
 
-## Getting Started
+### Для администратора:
+- **Dashboard:** Статистика и ключевые метрики.
+- **Управление автопарком:** Полный CRUD (создание, чтение, обновление, удаление) автомобилей.
+- **Календарь занятости:** Визуальная сетка всех бронирований.
+- **Уведомления:** Мгновенные уведомления о новых заявках в Telegram.
 
-1. **Clone the repository**
+## 📸 Скриншоты
 
-2. **Install dependencies**
+| Главная страница | Детальная страница авто |
+|---|---|
+| ![Home](public/screenshots/home.png) | ![Car Details](public/screenshots/home_fixed.png) |
+
+| Админ-панель | Календарь бронирований |
+|---|---|
+| ![Admin](public/screenshots/admin.png) | ![Calendar](screenshots/fleet_check.png) |
+
+## 🛠 Установка и запуск
+
+1. Клонируйте репозиторий:
+   ```bash
+   git clone https://github.com/your-username/premium-car-rental.git
+   ```
+2. Установите зависимости:
    ```bash
    npm install
    ```
-
-3. **Setup Database**
-   ```bash
-   # Create .env file if not exists
-   # DATABASE_URL="file:./dev.db" is default for SQLite
-
-   # Run migrations
-   npx prisma migrate dev --name init
-
-   # Seed database with test cars
-   npx ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts
-   ```
-
-4. **Configure Environment Variables**
-   Create `.env` file:
+3. Настройте переменные окружения (`.env`):
    ```env
    DATABASE_URL="file:./dev.db"
-   TELEGRAM_BOT_TOKEN="your_bot_token"
-   TELEGRAM_CHAT_ID="your_chat_id"
-   NEXT_PUBLIC_BASE_URL="http://localhost:3000"
+   AUTH_SECRET="your-secret"
+   TELEGRAM_BOT_TOKEN="your-token"
+   TELEGRAM_CHAT_ID="your-id"
    ```
-
-5. **Run Development Server**
+4. Запустите миграции БД:
+   ```bash
+   npx prisma migrate dev
+   ```
+5. Запустите проект:
    ```bash
    npm run dev
    ```
-   Open [http://localhost:3000](http://localhost:3000).
 
-## Admin Panel
-
-Access the admin panel at `/admin`.
-**Default Credentials**:
-- User: `admin` (or set via `ADMIN_USER` env var)
-- Password: `secure_password_123` (or set via `ADMIN_PASSWORD` env var)
-
-(Configured in `src/middleware.ts` and `src/lib/auth.ts`)
-
-## Screenshots
-
-### Home Page
-![Home Page](public/screenshots/home.png)
-
-### Admin Dashboard
-![Admin Dashboard](public/screenshots/admin.png)
-
-## Deployment
-
-1. Push to GitHub.
-2. Import project to Vercel.
-3. Add Environment Variables in Vercel Settings.
-   - For Database, use Vercel Postgres or Supabase/Neon connection string.
-   - Update `DATABASE_URL` in Vercel.
-4. Redeploy.
-
-## License
-
-MIT
+---
+*Разработано для портфолио как пример высококачественного бизнес-решения.*
