@@ -59,10 +59,18 @@ High-performance web application for luxury car rental. Built with Next.js 15, T
 
 Access the admin panel at `/admin`.
 **Default Credentials**:
-- User: `admin`
-- Password: `admin`
+- User: `admin` (or set via `ADMIN_USER` env var)
+- Password: `secure_password_123` (or set via `ADMIN_PASSWORD` env var)
 
-(Configured in `src/middleware.ts`)
+(Configured in `src/middleware.ts` and `src/lib/auth.ts`)
+
+## Screenshots
+
+### Home Page
+![Home Page](public/screenshots/home.png)
+
+### Admin Dashboard
+![Admin Dashboard](public/screenshots/admin.png)
 
 ## Deployment
 
