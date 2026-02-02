@@ -1,68 +1,76 @@
-# Premium Car Rental Service
+# Premium Car Rental
 
-Современная Full-stack платформа для аренды автомобилей премиум-класса. Проект реализован как высокопроизводительное веб-приложение с полноценной админ-панелью, системой бронирования и аутентификацией.
+This is a full-stack web application for a premium car rental service. It features a public-facing site for browsing and booking cars, and a comprehensive admin panel for managing the fleet, bookings, and users.
 
-## 🚀 Технологический стек
+## Key Features
 
-- **Framework:** Next.js 16 (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS 4
-- **Database:** PostgreSQL / SQLite (Prisma ORM)
-- **Auth:** Auth.js v5 (NextAuth)
-- **Animations:** Framer Motion
-- **Notifications:** Telegram Bot API
-- **UI Components:** Radix UI / Shadcn UI
+*   **Modern User Interface:** Sleek, responsive design built with Next.js, Tailwind CSS, and Framer Motion.
+*   **Car Fleet Showcase:** Browse available premium vehicles with detailed specifications.
+*   **Admin Dashboard:** A secure area for administrators to manage the application's data.
+*   **Full CRUD for Cars:** Admins can create, read, update, and delete car listings.
+*   **User Authentication:** Secure login and registration system using NextAuth.js, supporting both credentials and Google OAuth.
+*   **Database Management:** Uses Prisma as an ORM for easy and safe database access.
 
-## ✨ Основные возможности
+## Screenshots
 
-### Для пользователей:
-- **Каталог авто:** Плавный интерфейс с фильтрацией и детальными страницами.
-- **Система бронирования:** Интерактивный календарь с проверкой доступности дат в реальном времени.
-- **Личный кабинет:** История заказов, управление профилем.
-- **Аутентификация:** Вход через Email/Пароль и Google OAuth.
-- **SEO:** Динамические мета-теги и JSON-LD разметка для каждой машины.
+### Home Page
+![Home Page](public/screenshots/home.png)
 
-### Для администратора:
-- **Dashboard:** Статистика и ключевые метрики.
-- **Управление автопарком:** Полный CRUD (создание, чтение, обновление, удаление) автомобилей.
-- **Календарь занятости:** Визуальная сетка всех бронирований.
-- **Уведомления:** Мгновенные уведомления о новых заявках в Telegram.
+### Admin Panel
+![Admin Panel](public/screenshots/admin.png)
 
-## 📸 Скриншоты
+## Tech Stack
 
-| Главная страница | Детальная страница авто |
-|---|---|
-| ![Home](public/screenshots/home.png) | ![Car Details](public/screenshots/home_fixed.png) |
+*   **Framework:** [Next.js](https://nextjs.org/)
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+*   **Authentication:** [NextAuth.js](https://next-auth.js.org/)
+*   **Database ORM:** [Prisma](https://www.prisma.io/)
+*   **UI Components:** [Shadcn/UI](https://ui.shadcn.com/)
+*   **Animations:** [Framer Motion](https://www.framer.com/motion/)
+*   **Language:** [TypeScript](https://www.typescriptlang.org/)
 
-| Админ-панель | Календарь бронирований |
-|---|---|
-| ![Admin](public/screenshots/admin.png) | ![Calendar](screenshots/fleet_check.png) |
+## Getting Started
 
-## 🛠 Установка и запуск
+### Prerequisites
 
-1. Клонируйте репозиторий:
-   ```bash
-   git clone https://github.com/your-username/premium-car-rental.git
-   ```
-2. Установите зависимости:
-   ```bash
-   npm install
-   ```
-3. Настройте переменные окружения (`.env`):
-   ```env
-   DATABASE_URL="file:./dev.db"
-   AUTH_SECRET="your-secret"
-   TELEGRAM_BOT_TOKEN="your-token"
-   TELEGRAM_CHAT_ID="your-id"
-   ```
-4. Запустите миграции БД:
-   ```bash
-   npx prisma migrate dev
-   ```
-5. Запустите проект:
-   ```bash
-   npm run dev
-   ```
+*   Node.js (v18 or later)
+*   npm / yarn / pnpm
+*   A running PostgreSQL, MySQL, or SQLite database.
 
----
-*Разработано для портфолио как пример высококачественного бизнес-решения.*
+### Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/S0R4-J/car.git
+    cd car
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Set up your environment variables:**
+    *   Copy the `.env.example` file to a new file named `.env.local`.
+    *   ```bash
+      *   cp .env.example .env.local
+      *   ```
+    *   Fill in the required variables, especially your `DATABASE_URL` and NextAuth `NEXTAUTH_SECRET`.
+
+4.  **Apply database migrations:**
+    ```bash
+    npx prisma migrate dev
+    ```
+
+5.  **Seed the database with initial data (including an admin user):**
+    ```bash
+    npx prisma db seed
+    ```
+    *Admin credentials are: `admin@example.com` / `password123`*
+
+6.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

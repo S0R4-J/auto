@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu, X, User } from "lucide-react";
@@ -10,6 +10,11 @@ import { signIn, signOut, useSession } from "next-auth/react";
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
@@ -35,7 +40,7 @@ export function Header() {
           <Link href="/contacts" className="text-sm font-medium text-gray-300 transition-colors hover:text-white">
             Контакты
           </Link>
-          {session && (
+          {isMounted && session && (
             <Link href="/dashboard" className="text-sm font-medium text-gray-300 transition-colors hover:text-white">
               Кабинет
             </Link>
@@ -44,7 +49,7 @@ export function Header() {
 
         {/* Desktop Auth/Action */}
         <div className="hidden md:flex items-center gap-4">
-          {session ? (
+          {isMounted && session ? (
             <div className="flex items-center gap-4">
               {(session.user as any).role === "admin" && (
                 <Link href="/admin" className="text-sm font-medium text-primary hover:text-primary/80">
@@ -59,7 +64,7 @@ export function Header() {
                 <span className="text-sm font-medium">{session.user?.name?.split(' ')[0]}</span>
               </Link>
             </div>
-          ) : (
+          ) : isMounted ? (
             <div className="flex items-center gap-2">
               <Button variant="ghost" size="sm" className="text-white hover:bg-white/10" asChild>
                 <Link href="/api/auth/signin">Войти</Link>
@@ -68,7 +73,7 @@ export function Header() {
                 <Link href="/register">Регистрация</Link>
               </Button>
             </div>
-          )}
+          ) : null}
           <Button asChild variant="default" size="sm" className="rounded-full px-6 bg-white text-black hover:bg-gray-200">
             <Link href="/contacts">Заказать звонок</Link>
           </Button>
@@ -102,21 +107,21 @@ export function Header() {
               <Link href="/contacts" className="text-lg font-medium text-gray-300 hover:text-white" onClick={closeMenu}>
                 Контакты
               </Link>
-              {session && (
+              {isMounted && session && (
                 <Link href="/dashboard" className="text-lg font-medium text-gray-300 hover:text-white" onClick={closeMenu}>
                   Личный кабинет
                 </Link>
               )}
               <div className="flex flex-col gap-2 mt-4">
-                {session ? (
+                {isMounted && session ? (
                   <Button variant="outline" className="text-white border-white/20" onClick={() => { signOut(); closeMenu(); }}>
                     Выйти
                   </Button>
-                ) : (
+                ) : isMounted ? (
                   <Button variant="outline" className="text-white border-white/20" onClick={() => { signIn("google"); closeMenu(); }}>
                     Войти через Google
                   </Button>
-                )}
+                ) : null}
                 <Button asChild variant="default" size="lg" className="w-full rounded-full bg-white text-black hover:bg-gray-200" onClick={closeMenu}>
                   <Link href="/contacts">Заказать звонок</Link>
                 </Button>

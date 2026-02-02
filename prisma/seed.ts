@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import 'dotenv/config'
+import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
 
@@ -59,6 +60,21 @@ async function main() {
       create: car,
     })
   }
+
+  const adminEmail = 'admin@example.com'
+  const adminPassword = 'password123'
+  const hashedPassword = await bcrypt.hash(adminPassword, 10)
+
+  await prisma.user.upsert({
+    where: { email: adminEmail },
+    update: {},
+    create: {
+      email: adminEmail,
+      name: 'Admin User',
+      password: hashedPassword,
+      role: 'admin',
+    },
+  })
 
   console.log('Seeding completed.')
 }

@@ -9,6 +9,9 @@
     "lint": "eslint",
     "generate:images": "ts-node scripts/generateImages.ts"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",
     "@hookform/resolvers": "^5.2.2",
